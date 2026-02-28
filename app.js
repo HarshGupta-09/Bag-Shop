@@ -11,6 +11,16 @@ app.use(express.urlencoded({ extended : true}));
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 app.set("view engine" , "ejs")
+const db = require("./config/mongooseConnection")
+
+
+
+
+
+
+
+
+
 
 app.get("/" ,(req,res)=>{
 res.send("Hello world")
