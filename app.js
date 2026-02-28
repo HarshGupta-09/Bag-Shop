@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express")
 const app = express();
+const ownersRouter =require("./routes/ownerRouter")
+const usersRouter =require("./routes/userRouter")
+const productsRouter =require("./routes/productRouter")
 
 const cookieParser = require("cookie-parser")
 const path = require("path")
@@ -14,7 +17,10 @@ app.set("view engine" , "ejs")
 const db = require("./config/mongooseConnection")
 
 
-
+// Routers
+app.use("/owners",ownersRouter);
+app.use("/users" ,usersRouter)
+app.use("/products",productsRouter)
 
 
 
