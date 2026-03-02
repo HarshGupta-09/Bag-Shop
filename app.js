@@ -6,6 +6,7 @@ const usersRouter =require("./routes/userRouter")
 const productsRouter =require("./routes/productRouter")
 const cookieParser = require("cookie-parser")
 const path = require("path")
+const indexRouter = require("./routes/index")
 app.use(express.json())
 app.use(express.urlencoded({ extended : true}));
 
@@ -17,16 +18,13 @@ const db = require("./config/mongooseConnection")
 app.use("/owners",ownersRouter);
 app.use("/users" ,usersRouter)
 app.use("/products",productsRouter)
+app.use('/',indexRouter)
 
 
 
 
 
 
-
-app.get("/" ,(req,res)=>{
-res.send("Hello world")
-})
 
 
 const PORT = process.env.PORT || 3000;

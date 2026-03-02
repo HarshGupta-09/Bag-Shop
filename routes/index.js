@@ -1,12 +1,9 @@
 const express = require("express")
 const router = express.Router();
 
-router.get("/",(req,res)=>{
-    res.send("welcome to users route")
-})
 
 router.get("/",(req,res)=>{
-    res.send("welcome to users route")
+    res.render("index")
 })
 
 module.exports = router;
