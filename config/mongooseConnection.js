@@ -1,8 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose")
 
 
-mongoose.connect("mongodb://localhost:27017/bag-shop").then(()=>{
-  console.log("Database Connected")  
+
+
+mongoose.connect(process.env.MONGODB_URL).then(()=>{
+console.log("Database Connected")
 }).catch((err)=>{
     console.log(err)
 })
