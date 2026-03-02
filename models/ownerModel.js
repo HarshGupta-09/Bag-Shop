@@ -11,7 +11,7 @@ const ownerSchema = mongoose.Schema({
         type : Array,
         default : []
     },
-gstin : String,
+    gstin : String,
     picture : String
 })
 
