@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow-md p-6">
+        <h2 class="text-xl font-bold mb-6">Scatch</h2>
+
+        <ul class="space-y-3">
+            <li>
+                <a href="/owner/admin/products" class="text-blue-600 font-medium">
+                    All Products
+                </a>
+            </li>
+            <li>
+                <a href="/owner/admin/dash" class="text-gray-700 hover:text-blue-600">
+                    Create new product
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-10">
+
+        <h1 class="text-2xl font-semibold mb-6">All Products</h1>
+
+        <% if(!owner || !owner.products || owner.products.length === 0) { %>
+            <p class="text-gray-500">No products added yet.</p>
+        <% } else { %>
+
+        <div class="grid grid-cols-3 gap-6">
+
+            <% owner.products.forEach(product => { %>
+
+                <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+
+                    <img 
+                        src="/uploads/<%= product.image %>" 
+                        class="h-40 w-full object-cover rounded"
+                    >
+
+                    <h3 class="mt-3 font-semibold text-lg">
+                        <%= product.name %>
+                    </h3>
+
+                    <p class="text-gray-600">
+                        ₹ <%= product.price %>
+                    </p>
+
+                    <% if(product.discount > 0) { %>
+                        <p class="text-green-600 text-sm">
+                            Discount: <%= product.discount %>%
+                        </p>
+                    <% } %>
+
+                    <!-- Delete Button -->
+                    <form 
+                        action="/owner/admin/delete-product/<%= product._id %>" 
+                        method="POST"
+                        class="mt-4"
+                    >
+                        <button 
+                            class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition"
+                        >
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+        <% } %>
+
+    </div>
+
+</div>
+
+</body>
+</html>
