@@ -3,7 +3,9 @@ const router = express.Router();
 const ownerModel= require("../models/ownerModel")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const upload = require("../config/multerConfig")
 
+// Routes
 router.get("/login",(req,res)=>{
   return   res.render("ownerLogin")
     // to do
@@ -59,8 +61,21 @@ function isOwnerLoggedIn(req, res, next) {
       return res.send(err.message)
    }
 }
+
+
+router.post("/admin/add-product",isOwnerLoggedIn,upload.single("image"),async(req,res)=>{
+  
+})
+
+
+
 router.get("/admin/dash",isOwnerLoggedIn,(req,res)=>{
    res.render("adminDash")
+})
+
+// to show all products to owner
+router.get("/admin/products",isOwnerLoggedIn,(req,res)=>{
+   return res.send("working")
 })
 
 
