@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Scatch - Shop</title>
+    <title>Scatch Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         }
 
         body {
-            background: #f8fafc;
+            background: #f1f5f9;
         }
 
         header {
@@ -41,66 +41,73 @@
             padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 50px auto;
             padding: 0 20px;
         }
 
         h1 {
             margin-bottom: 30px;
-            font-size: 28px;
         }
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 25px;
         }
 
         .card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: 0.2s ease;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
         }
 
-        .product-title {
-            font-weight: 600;
-            margin-bottom: 10px;
+        .image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content {
+            padding: 20px;
         }
 
         .price {
-            color: #2563eb;
-            font-weight: 500;
-            margin-bottom: 15px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-right: 10px;
+        }
+
+        .discount-badge {
+            background: #ef4444;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 12px;
         }
 
         .buy-btn {
             width: 100%;
-            padding: 8px;
-            background: #2563eb;
+            padding: 10px;
+            border-radius: 8px;
             border: none;
-            color: white;
-            border-radius: 6px;
             cursor: pointer;
+            margin-top: 15px;
+            font-weight: 500;
         }
 
-        .buy-btn:hover {
-            background: #1d4ed8;
-        }
     </style>
 </head>
 <body>
@@ -113,33 +120,52 @@
 </header>
 
 <div class="container">
-    <h1>Welcome to the Shop 🛍️</h1>
+    <h1>Our Products 🛍️</h1>
 
     <div class="products">
 
-        <div class="card">
-            <div class="product-title">Premium Leather Bag</div>
-            <div class="price">₹3,499</div>
-            <button class="buy-btn">Add to Cart</button>
-        </div>
+        <% products.forEach(product => { %>
 
-        <div class="card">
-            <div class="product-title">Travel Backpack</div>
-            <div class="price">₹2,199</div>
-            <button class="buy-btn">Add to Cart</button>
-        </div>
+            <% 
+               const finalPrice = product.price - 
+               (product.price * product.discount / 100); 
+            %>
 
-        <div class="card">
-            <div class="product-title">Office Messenger Bag</div>
-            <div class="price">₹1,899</div>
-            <button class="buy-btn">Add to Cart</button>
-        </div>
+            <div class="card" style="background-color: <%= product.bgColor %>">
 
-        <div class="card">
-            <div class="product-title">Laptop Sleeve</div>
-            <div class="price">₹999</div>
-            <button class="buy-btn">Add to Cart</button>
-        </div>
+                <div class="image" 
+                     style="background-image: url('<%= product.image %>')">
+                </div>
+
+                <div class="content" 
+                     style="background-color: <%= product.panelColor %>; 
+                            color: <%= product.textColor %>">
+
+                    <h3><%= product.name %></h3>
+
+                    <div class="price">
+                        <% if(product.discount > 0) { %>
+                            <span class="old-price">₹<%= product.price %></span>
+                            ₹<%= finalPrice.toFixed(0) %>
+                            <span class="discount-badge">
+                                -<%= product.discount %>%
+                            </span>
+                        <% } else { %>
+                            ₹<%= product.price %>
+                        <% } %>
+                    </div>
+
+                    <button class="buy-btn" 
+                        style="background-color: <%= product.textColor %>;
+                               color: white;">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        <% }) %>
 
     </div>
 </div>
