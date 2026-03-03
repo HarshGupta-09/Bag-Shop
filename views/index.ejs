@@ -22,6 +22,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+
+        /* Flash Error */
+        .flash-error {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
         .main-container {
@@ -108,37 +123,44 @@
 </head>
 <body>
 
-<div class="main-container">
+    <!-- Flash Error Message -->
+    <% if (error && error.length > 0) { %>
+        <div class="flash-error">
+            <%= error[0] %>
+        </div>
+    <% } %>
 
-    <!-- LEFT SIDE -->
-    <div class="left">
-        <h1>Welcome to <span>Scatch</span></h1>
-        <div class="subtitle">Create your account to get started</div>
+    <div class="main-container">
 
-        <form action="/users/register" method="POST">
-            <input type="text" name="fullname" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password" required>
+        <!-- LEFT SIDE (Register) -->
+        <div class="left">
+            <h1>Welcome to <span>Scatch</span></h1>
+            <div class="subtitle">Create your account to get started</div>
 
-            <button type="submit">Create Account</button>
-        </form>
+            <form action="/users/register" method="POST">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- RIGHT SIDE (Login) -->
+        <div class="right">
+            <h2>Login to Your Account</h2>
+
+            <form action="/users/login" method="POST">
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
     </div>
-
-    <div class="divider"></div>
-
-    <!-- RIGHT SIDE -->
-    <div class="right">
-        <h2>Login to Your Account</h2>
-
-        <form action="/users/login" method="POST">
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password" required>
-
-            <button type="submit">Login</button>
-        </form>
-    </div>
-
-</div>
 
 </body>
 </html>

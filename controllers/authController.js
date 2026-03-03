@@ -56,11 +56,9 @@ async function  loginUser(req,res){
     if(passwordMatch){
         const token = generateToken(email,isExist._id);
          res.cookie("token",token);
+     return res.redirect("/shop")
+    
      
-          res.status(200).json({
-         message: "You are logged in successfully",
-         isExist
-      });
 
     }else{
           res.status(403).json({
@@ -77,6 +75,13 @@ async function  loginUser(req,res){
     }
 
 }
+const logoutUser = async (req, res) => {
+  res.clearCookie("token");
+
+   req.flash("success", "Logged out successfully");
+
+   return res.redirect("/");
+};
 module.exports = {registerUser ,
-loginUser
+loginUser , logoutUser
 };
