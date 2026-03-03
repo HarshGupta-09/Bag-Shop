@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-md p-6">
+            <h2 class="text-xl font-bold mb-6">Scatch</h2>
+
+            <ul class="space-y-3">
+                <li>
+                    <a href="/admin/products" class="text-gray-700 hover:text-blue-600">
+                        All Products
+                    </a>
+                </li>
+                <li>
+                    <a href="/owner/admin/dash" class="text-gray-700 hover:text-blue-600">
+                        Create new product
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-10">
+
+            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
+
+                <h1 class="text-2xl font-semibold mb-6">Create New Product</h1>
+
+                <form action="/admin/add-product" method="POST" enctype="multipart/form-data" class="space-y-6">
+
+                    <!-- Product Details -->
+                    <div>
+                        <h2 class="text-lg font-medium mb-3">Product Details</h2>
+
+                        <!-- Image -->
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-medium text-gray-700">
+                                Product Image
+                            </label>
+                            <input type="file" name="image" class="border p-2 w-full rounded">
+                        </div>
+
+                        <!-- Name + Price Row -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <input 
+                                type="text"
+                                name="name"
+                                placeholder="Product Name"
+                                required
+                                class="border p-2 rounded w-full"
+                            >
+                            <input 
+                                type="number"
+                                name="price"
+                                placeholder="Product Price"
+                                required
+                                class="border p-2 rounded w-full"
+                            >
+                        </div>
+
+                        <!-- Discount -->
+                        <input 
+                            type="number"
+                            name="discount"
+                            placeholder="Discount Price"
+                            class="border p-2 rounded w-full"
+                        >
+                    </div>
+
+                    <!-- Panel Details -->
+                    <div>
+                        <h2 class="text-lg font-medium mb-3">Panel Details</h2>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <input 
+                                type="text"
+                                name="bgColor"
+                                placeholder="Background Color"
+                                required
+                                class="border p-2 rounded w-full"
+                            >
+                            <input 
+                                type="text"
+                                name="panelColor"
+                                placeholder="Panel Color"
+                                required
+                                class="border p-2 rounded w-full"
+                            >
+                        </div>
+
+                        <input 
+                            type="text"
+                            name="textColor"
+                            placeholder="Text Color"
+                            required
+                            class="border p-2 rounded w-full"
+                        >
+                    </div>
+
+                    <!-- Submit -->
+                    <button 
+                        type="submit"
+                        class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                    >
+                        Create New Product
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

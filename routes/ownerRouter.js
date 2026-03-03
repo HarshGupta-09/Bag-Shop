@@ -60,7 +60,7 @@ function isOwnerLoggedIn(req, res, next) {
    }
 }
 router.get("/admin/dash",isOwnerLoggedIn,(req,res)=>{
-   res.send("Admin Dashboard")
+   res.render("adminDash")
 })
 
 
