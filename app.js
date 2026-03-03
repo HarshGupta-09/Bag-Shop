@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 const db = require("./config/mongooseConnection");
 // Routers
-app.use("/owners", ownersRouter);
+app.use("/owner", ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/", indexRouter);
